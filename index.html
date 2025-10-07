@@ -290,14 +290,14 @@
             <p><strong>If you've spotted someone like this near you...</strong></p>
             <p>Join the squad. We need you.</p>
 
-            <form id="reportForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdP9GNPb7k_mKrVplqZyuKsw4fDW2TEuTbskzDqRfO0MOvk4Q/formResponse" method="POST" target="_blank">
+            <form id="reportForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdP9GNPb7k_mKrVplqZyuKsw4fDW2TEuTbskzDqRfO0MOvk4Q/formResponse" method="POST" target="hidden_iframe">
                 <div class="form-group">
                     <label for="name">YOUR NAME</label>
                     <input type="text" id="name" name="entry.1282745502" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
                     <label for="number">CONTACT NUMBER</label>
-                    <input type="tel" id="number" name="entry.713077699" placeholder="Enter your 10 digit number" pattern="[0-9]{10}" maxlength="10" required>
+                    <input type="tel" id="number" name="entry.713077699" placeholder="Enter your 10 digit number" pattern="[0-9]{10}" maxlength="10" title="Enter your 10 digit mobile number" required>
                 </div>
                 <div class="form-group">
                     <label for="occupation">OCCUPATION</label>
@@ -305,6 +305,7 @@
                 </div>
                 <button type="submit">JOIN THE SQUAD</button>
             </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </div>
     </div>
 
