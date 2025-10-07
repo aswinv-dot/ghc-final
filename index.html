@@ -290,7 +290,7 @@
             <p><strong>If you've spotted someone like this near you...</strong></p>
             <p>Join the squad. We need you.</p>
 
-            <form id="reportForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdP9GNPb7k_mKrVplqZyuKsw4fDW2TEuTbskzDqRfO0MOvk4Q/formResponse" method="POST" target="_blank">
+            <form id="reportForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdP9GNPb7k_mKrVplqZyuKsw4fDW2TEuTbskzDqRfO0MOvk4Q/formResponse" method="POST" target="hidden_iframe">
                 <div class="form-group">
                     <label for="name">YOUR NAME</label>
                     <input type="text" id="name" name="entry.1282745502" placeholder="Enter your name" required>
@@ -305,6 +305,7 @@
                 </div>
                 <button type="submit">JOIN THE SQUAD</button>
             </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </div>
     </div>
 
@@ -314,7 +315,16 @@
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
         });
 
-        // Form will submit directly to Google Forms
+        // Handle form submission
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            // Show thank you message immediately
+            alert('Thank you for submission! Let\'s find out the missing nurses.');
+            
+            // Reset form after a short delay to allow submission to complete
+            setTimeout(function() {
+                document.getElementById('reportForm').reset();
+            }, 1000);
+        });
     </script>
 </body>
 </html>
