@@ -308,6 +308,16 @@
         </div>
     </div>
 
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>✓ THANK YOU!</h2>
+            <p>Your submission has been received.</p>
+            <p><strong>Let's find out the missing nurses!</strong></p>
+            <button class="close-btn" onclick="closeModal()">CLOSE</button>
+        </div>
+    </div>
+
     <script>
         // Ensure only numbers are entered in phone field
         document.getElementById('number').addEventListener('input', function(e) {
@@ -327,16 +337,29 @@
                 body: formData,
                 mode: 'no-cors'
             }).then(() => {
-                // Show thank you message
-                alert('Thank you for submission! Let\'s find out the missing nurses.');
+                // Show custom modal
+                document.getElementById('successModal').style.display = 'block';
                 // Reset form
                 document.getElementById('reportForm').reset();
             }).catch(() => {
                 // Even if there's an error, the submission likely went through
-                alert('Thank you for submission! Let\'s find out the missing nurses.');
+                document.getElementById('successModal').style.display = 'block';
                 document.getElementById('reportForm').reset();
             });
         });
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
