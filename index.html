@@ -30,6 +30,12 @@
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 0 30px rgba(79, 195, 247, 0.3);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header {
@@ -44,6 +50,12 @@
             font-weight: bold;
             letter-spacing: 3px;
             margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         h1 {
@@ -200,6 +212,12 @@
             text-align: center;
             margin: 25px 0;
             border-radius: 10px;
+            animation: glowReward 2s ease-in-out infinite;
+        }
+
+        @keyframes glowReward {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
         }
 
         .reward-title {
@@ -272,7 +290,7 @@
             <p><strong>If you've spotted someone like this near you...</strong></p>
             <p>Join the squad. We need you.</p>
 
-            <form id="reportForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdP9GNPb7k_mKrVplqZyuKsw4fDW2TEuTbskzDqRfO0MOvk4Q/formResponse" method="POST">
+            <form id="reportForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdP9GNPb7k_mKrVplqZyuKsw4fDW2TEuTbskzDqRfO0MOvk4Q/formResponse" method="POST" target="hidden_iframe">
                 <div class="form-group">
                     <label for="name">YOUR NAME</label>
                     <input type="text" id="name" name="entry.1282745502" placeholder="Enter your name" required>
@@ -287,16 +305,7 @@
                 </div>
                 <button type="submit">JOIN THE SQUAD</button>
             </form>
-        </div>
-    </div>
-
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <h2>✓ THANK YOU!</h2>
-            <p>Your submission has been received.</p>
-            <p><strong>Let's find out the missing nurses!</strong></p>
-            <button class="close-btn" onclick="closeModal()">CLOSE</button>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </div>
     </div>
 
@@ -319,29 +328,16 @@
                 body: formData,
                 mode: 'no-cors'
             }).then(() => {
-                // Show custom modal
-                document.getElementById('successModal').style.display = 'block';
+                // Show thank you message
+                alert('Thank you for submission! Let\'s find out the missing nurses.');
                 // Reset form
                 document.getElementById('reportForm').reset();
             }).catch(() => {
                 // Even if there's an error, the submission likely went through
-                document.getElementById('successModal').style.display = 'block';
+                alert('Thank you for submission! Let\'s find out the missing nurses.');
                 document.getElementById('reportForm').reset();
             });
         });
-
-        // Close modal function
-        function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('successModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
     </script>
 </body>
 </html>
